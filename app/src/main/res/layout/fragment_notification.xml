@@ -41,7 +41,8 @@
             android:id="@+id/btnSendMessage"
             android:layout_width="80dp"
             android:layout_height="40dp"
-            android:text="Send" />
+            android:text="Send"
+            tools:ignore="TouchTargetSizeCheck" />
 
         <!--
             <androidx.appcompat.widget.AppCompatButton

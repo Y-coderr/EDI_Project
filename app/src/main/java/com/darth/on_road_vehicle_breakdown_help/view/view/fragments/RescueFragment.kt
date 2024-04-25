@@ -3,10 +3,12 @@ package com.darth.on_road_vehicle_breakdown_help.view.view.fragments
 import android.app.AlertDialog
 import android.content.ContentValues
 import android.content.Context.LOCATION_SERVICE
+import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.location.LocationListener
 import android.location.LocationManager
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -22,6 +24,7 @@ import androidx.appcompat.R
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.darth.on_road_vehicle_breakdown_help.databinding.FragmentRescueBinding
 import com.darth.on_road_vehicle_breakdown_help.view.model.Place
 import com.darth.on_road_vehicle_breakdown_help.view.model.Rescue
@@ -45,6 +48,7 @@ import kotlinx.coroutines.tasks.await
 import java.util.UUID
 
 private const val DEFAULT_ZOOM = 16f
+@Suppress("UNREACHABLE_CODE")
 class RescueFragment : Fragment(), OnMapReadyCallback ,GoogleMap.OnMapLongClickListener {
 
     private var _binding: FragmentRescueBinding? = null
@@ -120,6 +124,8 @@ class RescueFragment : Fragment(), OnMapReadyCallback ,GoogleMap.OnMapLongClickL
         registerLauncher()
         bundles()
 
+
+
         if (data.equals("create")) {
             createRescueVisibility()
             getProblem()
@@ -152,7 +158,14 @@ class RescueFragment : Fragment(), OnMapReadyCallback ,GoogleMap.OnMapLongClickL
                 saveRescue(rescue)
             }
         }
+        binding.saveRescueButton?.setOnClickListener {
+            val contactNumber = "9322700682"
+            val message = "Hello, this is a test message!"
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("sms:$contactNumber"))
+            intent.putExtra("sms_body", message)
+            startActivity(intent)
 
+        }
 
         binding.goBackRescueButton.setOnClickListener {
             val fragment = HomeFragment()
@@ -182,6 +195,7 @@ class RescueFragment : Fragment(), OnMapReadyCallback ,GoogleMap.OnMapLongClickL
             dataVehicleUser = it.getString("dataVehicleUser")
             dataDescribeProblem = it.getString("dataDescribeProblem")
         }
+
     }
     override fun onMapReady(googleMap: GoogleMap) {
 
@@ -287,9 +301,13 @@ class RescueFragment : Fragment(), OnMapReadyCallback ,GoogleMap.OnMapLongClickL
             rescueMap = googleMap,
             rescueVehicle = vehicleItem,
             rescueVehicleUser = vehicleUser,
+
         )
+
         return rescue
     }
+
+
     private fun createRescueVisibility() {
         binding.map.visibility = View.GONE
         binding.rescueDirectionLabel.visibility = View.GONE
@@ -752,6 +770,10 @@ class RescueFragment : Fragment(), OnMapReadyCallback ,GoogleMap.OnMapLongClickL
         super.onDestroyView()
         _binding = null
     }
+}
+
+private fun Intent.putExtra(s: String, rescue: Rescue) {
+
 }
 
 

@@ -62,13 +62,13 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/vehicleRegisterButton"
             android:layout_width="293dp"
-            android:layout_height="36dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical|center_horizontal"
             android:layout_marginTop="80dp"
             android:background="@color/light_grey"
             android:onClick="register"
             android:text="@string/registers"
             app:cornerRadius="5dp"
-            android:layout_gravity="center_vertical|center_horizontal"
             app:layout_constraintEnd_toEndOf="@+id/vehicleYear"
             app:layout_constraintStart_toStartOf="@+id/vehicleYear"
             app:layout_constraintTop_toBottomOf="@+id/vehicleYear" />
@@ -76,13 +76,13 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/vehicleCancelButton"
             android:layout_width="293dp"
-            android:layout_height="36dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical|center_horizontal"
             android:layout_marginTop="8dp"
             android:background="@color/light_grey"
             android:onClick="register"
             android:text="@string/cancels"
             app:cornerRadius="5dp"
-            android:layout_gravity="center_vertical|center_horizontal"
             app:layout_constraintEnd_toEndOf="@+id/vehicleRegisterButton"
             app:layout_constraintStart_toStartOf="@+id/vehicleRegisterButton"
             app:layout_constraintTop_toBottomOf="@+id/vehicleRegisterButton" />
